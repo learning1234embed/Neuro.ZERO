@@ -61,11 +61,35 @@ new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
 
 ```
 **--mode**: Which network to be created. The examples creates a baseline (b) network.   
-**--layers**: Specify the layers of the network. The example creates a network with total seven layers, i.e., 28\*28\*1 (input), 3\*3\*1\*2 (Conv1), 3\*3\*2\*4 (Conv2), 3\*3\*4\*8 (Conv3), 64 (Fully-connected 1), 128 (Fully-connected 2), 10 (output).
+**--layers**: The layers and architecture of the network to be created. The example creates a network with total seven layers, i.e., 28\*28\*1 (input), 3\*3\*1\*2 (Conv1), 3\*3\*2\*4 (Conv2), 3\*3\*4\*8 (Conv3), 64 (Fully-connected 1), 128 (Fully-connected 2), 10 (output).
 
 
 2. Train the newly-created baseline network with TensorFlow.
-python NeuroZERO.py --mode=t --network=baseline --data=mnist_data
+```sh
+$ python NeuroZERO.py --mode=t --network=baseline --data=mnist_data
+[t] train
+[t] network: baseline
+[t] data: mnist_data train/test.size: (55000, 784) (10000, 784)
+train
+step 0, training accuracy: 0.080000
+step 0, validation accuracy: 0.103200
+step 100, training accuracy: 0.190000
+step 100, validation accuracy: 0.159900
+step 200, training accuracy: 0.650000
+step 200, validation accuracy: 0.670500
+step 300, training accuracy: 0.680000
+...
+step 4800, training accuracy: 0.900000
+step 4800, validation accuracy: 0.928200
+step 4900, training accuracy: 0.950000
+step 4900, validation accuracy: 0.923500
+step 4999, training accuracy: 0.940000
+step 4999, validation accuracy: 0.930200
+took 23018.169 ms
+[] Save NeuroZERO
+```
+**--network**: Which network to train. The example trains the baseline (baseline) network.
+**--data**: The train data. The example uses MNIST data for training.
 
 Create an extended network based on the baseline network
 python NeuroZERO.py --mode=ext
