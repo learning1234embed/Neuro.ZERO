@@ -1,7 +1,7 @@
 # Neuro.ZERO
 Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems
 
-Install Phthon, Tensorflow, CCS
+## Install Phthon, Tensorflow, CCS
 
 Create a baseline network
 python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
