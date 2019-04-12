@@ -29,7 +29,7 @@ Resolving deltas: 100% (203/203), done.
 export PATH=$PATH:/home/ti/ccsv8/eclipse/
 ```
 
-## Extended Inference
+## Extended Inference (Step by Step)
 The following shows an example of generating extended inference with [MNIST](http://yann.lecun.com/exdb/mnist/) dataset.
 
 1. Create a baseline network to be extended (accelerated) with TensorFlow.
