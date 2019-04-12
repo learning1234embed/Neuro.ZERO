@@ -12,7 +12,7 @@ Neuro.ZERO requires to install Python, TensorFlow (for training) and Code Compos
 
 3. Install [Code Composer Studio (CCS)](http://www.ti.com/tool/CCSTUDIO).
 
-4. Clone the Neuro.ZERO repository
+4. Clone the Neuro.ZERO repository.
 ```sh
 $ git clone https://github.com/learning1234embed/Neuro.ZERO.git
 Cloning into 'Neuro.ZERO'...
