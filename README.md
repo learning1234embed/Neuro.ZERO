@@ -180,7 +180,7 @@ bias_len 312
 **--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
 **--network**: Which network to export. The example exports the extended network (--network=extended). 
 
-7. Generate (build) the main MCU and accelerator binary (MSP430FRXXXX). The output binary for the main MCU and the accelerator are located at the 'extended_MAIN/' and 'extended_ACC/' folders, respectively.
+7. Generate (compile) the main MCU and accelerator binary (MSP430FRXXXX). The code and output binary for the main MCU and the accelerator are located at the 'extended_MAIN/' and 'extended_ACC/' folders, respectively. The code for each MCU can be edited by a user and compiled mutilple times.
 ```sh
 $ python generate_binary.py --mode=ext
 /Neuro.ZERO/extended_MAIN created
