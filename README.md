@@ -77,20 +77,19 @@ step 100, training accuracy: 0.190000
 step 100, validation accuracy: 0.159900
 step 200, training accuracy: 0.650000
 step 200, validation accuracy: 0.670500
-step 300, training accuracy: 0.680000
 ...
 step 4800, training accuracy: 0.900000
 step 4800, validation accuracy: 0.928200
 step 4900, training accuracy: 0.950000
 step 4900, validation accuracy: 0.923500
 step 4999, training accuracy: 0.940000
-step 4999, validation accuracy: 0.930200
+step 4999, validation accuracy: 0.925200
 took 23018.169 ms
 [] Save NeuroZERO
 ```
 **--mode**: Which command the Neuro.ZERO performs. The example trains a network (--mode=t).   
-**--network**: Which network to train. The example trains the baseline (baseline) network.  
-**--data**: The train data. The example uses MNIST data for training.
+**--network**: Which network to train. The example trains the baseline network (--network=baseline).  
+**--data**: The train data. The example uses MNIST data for training (--data=mnist_data).
 
 3. Create an extended network based on the baseline network.
 ```sh
@@ -128,8 +127,30 @@ new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
 ```
 **--mode**: Which command the Neuro.ZERO performs. The example creates an extended (ext) network (--mode=ext).   
 
-Train the extended network
-python NeuroZERO.py --mode=t --network=extended --data=mnist_data
+4. Train the extended network
+```sh
+$ python NeuroZERO.py --mode=t --network=extended --data=mnist_data
+[t] train
+[t] network: extended
+[t] data: mnist_data train/test.size: (55000, 784) (10000, 784)
+train
+step 0, training accuracy: 0.780000
+step 0, validation accuracy: 0.827800
+step 100, training accuracy: 0.900000
+step 100, validation accuracy: 0.930900
+step 200, training accuracy: 0.940000
+step 200, validation accuracy: 0.930200
+...
+step 4800, training accuracy: 0.980000
+step 4800, validation accuracy: 0.972700
+step 4900, training accuracy: 0.960000
+step 4900, validation accuracy: 0.970300
+step 4999, training accuracy: 0.980000
+step 4999, validation accuracy: 0.972300
+```
+**--mode**: Which command the Neuro.ZERO performs. The example trains a network (--mode=t).   
+**--network**: Which network to train. The example trains the extended network (--network=extended).  
+**--data**: The train data. The example uses MNIST data for training (--data=mnist_data).
 
 Export the network architecture and parameters of the baseline network
 python NeuroZERO.py --mode=e --network=baseline
