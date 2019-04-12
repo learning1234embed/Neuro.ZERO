@@ -1,10 +1,10 @@
 # Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems
 
 ## Introduction
-This code implements the paper titled "Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems", which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. Neuro.ZERO is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy. This code implements the four modes of acceleration, i.e., extended inference, expedited inference, ensembled inference, and latent training for Texas Instruments's [MSP430FR5994 microcontroller](http://www.ti.com/product/MSP430FR5994).
+This code implements the paper titled "Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems", which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. Neuro.ZERO is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy. This code implements the four modes of acceleration, i.e., extended inference, expedited inference, ensembled inference, and latent training for Texas Instruments's [MSP430FRXXXX microcontroller](http://www.ti.com/product/MSP430FR5994).
 
 ## Install and Setup 
-It requires to install Python, TensorFlow and ode Composer Studio. The path evironment also needs to be set for the execution of eclipse (CCS).
+It requires to install Python, TensorFlow (offline training) and Code Composer Studio (binary generation for MSP430FRXXXX). The path evironment also needs to be set for the execution of eclipse (CCS).
 
 1. Install [Python](https://www.python.org/downloads/).
 
@@ -42,7 +42,7 @@ Receiving objects: 100% (456/456), 534.42 KiB | 4.49 MiB/s, done.
 Resolving deltas: 100% (203/203), done.
 ```
 
-Train the baseline network
+2. Train the baseline network with TensorFlow.
 python NeuroZERO.py --mode=t --network=baseline --data=mnist_data
 
 Create an extended network based on the baseline network
