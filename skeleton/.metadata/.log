@@ -1,0 +1,39 @@
+!SESSION 2019-04-12 11:51:26.333 -----------------------------------------------
+eclipse.buildId=4.7.3.M20180301-0715
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -application com.ti.ccstudio.apps.projectBuild -ccs.configuration Debug -ccs.autoImport -ccs.projects extended_ACC
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data ./ -application com.ti.ccstudio.apps.projectBuild -ccs.configuration Debug -ccs.autoImport -ccs.projects extended_ACC
+
+!ENTRY com.ti.common.core 4 0 2019-04-12 11:51:26.908
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2019-04-12 11:51:26.909
+!MESSAGE debugServerDir=/home/seulki/ti/ccsv8/ccs_base/DebugServer
+!SESSION 2019-04-12 11:51:37.911 -----------------------------------------------
+eclipse.buildId=4.7.3.M20180301-0715
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -application com.ti.ccstudio.apps.projectBuild -ccs.configuration clean -ccs.autoImport -ccs.projects extended_ACC
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data ./ -application com.ti.ccstudio.apps.projectBuild -ccs.configuration clean -ccs.autoImport -ccs.projects extended_ACC
+
+!ENTRY com.ti.common.core 4 0 2019-04-12 11:51:38.446
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2019-04-12 11:51:38.446
+!MESSAGE debugServerDir=/home/seulki/ti/ccsv8/ccs_base/DebugServer
+!SESSION 2019-04-12 11:52:14.934 -----------------------------------------------
+eclipse.buildId=4.7.3.M20180301-0715
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -application com.ti.ccstudio.apps.projectBuild -ccs.clean -ccs.autoImport -ccs.projects extended_ACC
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data ./ -application com.ti.ccstudio.apps.projectBuild -ccs.clean -ccs.autoImport -ccs.projects extended_ACC
+
+!ENTRY com.ti.common.core 4 0 2019-04-12 11:52:15.458
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2019-04-12 11:52:15.458
+!MESSAGE debugServerDir=/home/seulki/ti/ccsv8/ccs_base/DebugServer
