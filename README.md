@@ -152,7 +152,7 @@ step 4999, validation accuracy: 0.972300
 **--network**: Which network to train. The example trains the extended network (--network=extended).  
 **--data**: The train data. The example uses MNIST data for training (--data=mnist_data).
 
-5. Export the network architecture and parameters of the baseline network.
+5. Export the network architecture and parameters of the baseline network for MSP430FRXXXX binary generation.
 ```sh
 $ python NeuroZERO.py --mode=e --network=baseline
 [] Load NeuroZERO
@@ -166,7 +166,7 @@ bias_len 216
 **--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
 **--network**: Which network to train. The example exports the baseline network (--network=baseline).  
 
-6. Export the network architecture and parameters of the extended network.
+6. Export the network architecture and parameters of the extended network for MSP430FRXXXX binary generation.
 ```sh
 $ python NeuroZERO.py --mode=e --network=extended
 [] Load NeuroZERO
