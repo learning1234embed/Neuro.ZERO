@@ -3,12 +3,23 @@
 ## Introduction
 This code implements the paper titled "Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems", which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. Neuro.ZERO is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy. This code implements the four modes of acceleration, i.e., extended inference, expedited inference, ensembled inference, and latent training for Texas Instruments's [MSP430FR5994 microcontroller](http://www.ti.com/product/MSP430FR5994).
 
-## System Setup 
-1. [Python](https://www.python.org/downloads/) install
+## Install and Setup 
+It requires to install Python, TensorFlow and ode Composer Studio.
 
-2. [Tensorflow](https://www.tensorflow.org/) install
+1. Install [Python](https://www.python.org/downloads/)
 
-3. [Code Composer Studio (CCS)](http://www.ti.com/tool/CCSTUDIO) install
+2. Install [Tensorflow](https://www.tensorflow.org/)
+
+3. Install [Code Composer Studio (CCS)](http://www.ti.com/tool/CCSTUDIO)
+
+4.
+
+5. Set PATH for eclipse
+```sh
+export PATH=$PATH:/home/ti/ccsv8/eclipse/
+```
+
+## Extended Inference
 
 Create a baseline network
 python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
