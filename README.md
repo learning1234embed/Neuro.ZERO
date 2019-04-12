@@ -127,7 +127,7 @@ new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
 ```
 **--mode**: Which command the Neuro.ZERO performs. The example creates an extended (ext) network (--mode=ext).   
 
-4. Train the extended network
+4. Train the extended network.
 ```sh
 $ python NeuroZERO.py --mode=t --network=extended --data=mnist_data
 [t] train
@@ -152,11 +152,33 @@ step 4999, validation accuracy: 0.972300
 **--network**: Which network to train. The example trains the extended network (--network=extended).  
 **--data**: The train data. The example uses MNIST data for training (--data=mnist_data).
 
-Export the network architecture and parameters of the baseline network
-python NeuroZERO.py --mode=e --network=baseline
+5. Export the network architecture and parameters of the baseline network.
+```sh
+$ python NeuroZERO.py --mode=e --network=baseline
+[] Load NeuroZERO
+[e] export weights and biases of a network to a file
+weight_len 10362
+bias_len 216
+weight_len 10362
+bias_len 216
+[] Save NeuroZERO
+```
+**--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the baseline network.   
+**--network**: Which network to train. The example trains the extended network (--network=baseline).  
 
-Export the network architecture and parameters of the extended network
-python NeuroZERO.py --mode=e --network=extended
+6. Export the network architecture and parameters of the extended network.
+```sh
+$ python NeuroZERO.py --mode=e --network=extended
+[] Load NeuroZERO
+[e] export weights and biases of a network to a file
+weight_len 22266
+bias_len 312
+weight_len 22266
+bias_len 312
+[] Save NeuroZERO
+```
+**--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the baseline network.   
+**--network**: Which network to train. The example trains the extended network (--network=extended).  
 
 Generate (build) the main MCU and accelerator binary
 python generate_binary.py --mode=ext
