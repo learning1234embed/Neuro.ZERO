@@ -88,12 +88,45 @@ step 4999, validation accuracy: 0.930200
 took 23018.169 ms
 [] Save NeuroZERO
 ```
-**--mode=t**: Which command the Neuro.ZERO performs. The example trains a network (--mode=t).   
+**--mode**: Which command the Neuro.ZERO performs. The example trains a network (--mode=t).   
 **--network**: Which network to train. The example trains the baseline (baseline) network.  
 **--data**: The train data. The example uses MNIST data for training.
 
-Create an extended network based on the baseline network
-python NeuroZERO.py --mode=ext
+3. Create an extended network based on the baseline network.
+```sh
+$ python NeuroZERO.py --mode=ext
+[] Load NeuroZERO
+[ext] constructing a extended network
+constructNetworkExtended 2: [[28, 28, 1], [3, 3, 1, 2], [3, 3, 2, 4], [3, 3, 4, 8], [32], [64], [10]]
+base_network: <__main__.Network instance at 0x7f3267b97050>
+layer_type: ['input', 'conv', 'max_pool', 'conv', 'max_pool', 'conv', 'max_pool', 'hidden', 'hidden', 'output']
+num_of_neuron_per_layer: [[28, 28, 1], [13, 13, 2], [5, 5, 4], [1, 1, 8], [32], [64], [10]]
+num_of_weight_per_layer: [18, 72, 288, 256, 2048, 640]
+num_of_bias_per_layer: [2, 4, 8, 32, 64, 10]
+layers [[28, 28, 1], [3, 3, 1, 2], [3, 3, 2, 4], [3, 3, 4, 8], [64], [128], [10]]
+Tensor("neuron_0:0", shape=(?, 28, 28, 1), dtype=float32)
+conv_parameter {'weights': <tf.Variable 'weight_0_base:0' shape=(3, 3, 1, 2) dtype=float32_ref>, 'biases': <tf.Variable 'bias_0_base:0' shape=(2,) dtype=float32_ref>}
+new_neuron Tensor("neuron_1_base:0", shape=(?, 13, 13, 2), dtype=float32)
+conv_parameter {'weights': <tf.Variable 'weight_1_base:0' shape=(3, 3, 2, 4) dtype=float32_ref>, 'biases': <tf.Variable 'bias_1_base:0' shape=(4,) dtype=float32_ref>}
+new_neuron Tensor("neuron_2_base:0", shape=(?, 5, 5, 4), dtype=float32)
+conv_parameter {'weights': <tf.Variable 'weight_2_base:0' shape=(3, 3, 4, 8) dtype=float32_ref>, 'biases': <tf.Variable 'bias_2_base:0' shape=(8,) dtype=float32_ref>}
+new_neuron Tensor("neuron_3_base:0", shape=(?, 1, 1, 8), dtype=float32)
+Tensor("neuron_0:0", shape=(?, 28, 28, 1), dtype=float32)
+conv_parameter {'weights': <tf.Variable 'weight_0:0' shape=(3, 3, 1, 2) dtype=float32_ref>, 'biases': <tf.Variable 'bias_0:0' shape=(2,) dtype=float32_ref>}
+new_neuron Tensor("neuron_1:0", shape=(?, 13, 13, 2), dtype=float32)
+conv_parameter {'weights': <tf.Variable 'weight_1:0' shape=(3, 3, 2, 4) dtype=float32_ref>, 'biases': <tf.Variable 'bias_1:0' shape=(4,) dtype=float32_ref>}
+new_neuron Tensor("neuron_2:0", shape=(?, 5, 5, 4), dtype=float32)
+conv_parameter {'weights': <tf.Variable 'weight_2:0' shape=(3, 3, 4, 8) dtype=float32_ref>, 'biases': <tf.Variable 'bias_2:0' shape=(8,) dtype=float32_ref>}
+new_neuron Tensor("neuron_3:0", shape=(?, 1, 1, 8), dtype=float32)
+fc_parameter {'weights': <tf.Tensor 'weight_3:0' shape=(16, 96) dtype=float32>, 'biases': <tf.Variable 'bias_3:0' shape=(96,) dtype=float32_ref>}
+new_neuron Tensor("neuron_4:0", shape=(?, 96), dtype=float32)
+fc_parameter {'weights': <tf.Tensor 'weight_4:0' shape=(96, 192) dtype=float32>, 'biases': <tf.Variable 'bias_4:0' shape=(192,) dtype=float32_ref>}
+new_neuron Tensor("neuron_5:0", shape=(?, 192), dtype=float32)
+fc_parameter {'weights': <tf.Tensor 'weight_5:0' shape=(192, 10) dtype=float32>, 'biases': <tf.Variable 'bias_5:0' shape=(10,) dtype=float32_ref>}
+new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
+[] Save NeuroZERO
+```
+**--mode**: Which command the Neuro.ZERO performs. The example creates an extended (ext) network (--mode=ext).   
 
 Train the extended network
 python NeuroZERO.py --mode=t --network=extended --data=mnist_data
