@@ -94,7 +94,9 @@ def copyAll(src, dst):
 
 def main(args):
 	if args.mode == 'ext':
-		shutil.rmtree('.metadata')
+		if os.path.exists('.metadata'):
+			shutil.rmtree('.metadata')
+
 		# main MCU
 		MAIN_src_dir = extended_MAIN_dir
 		MAIN_target_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), os.path.basename(os.path.normpath(MAIN_src_dir)))

@@ -44,7 +44,6 @@ class NeuroZERO:
 		conv_layers = []
 
 		for layer in range(0, len(base_layers)):
-			print base_layers[layer]
 			if len(base_layers[layer]) >= 4:
 				conv_layers.append(base_layers[layer])
 
@@ -925,10 +924,7 @@ def main(args):
 
 		base_network = nz.network_dic[baseline_network_name][1]
 		extended_network = nz.create_extended_network(base_network.layers)
-		print extended_network
-
 		step = len(extended_network)
-		#step = 2
 		nz.constructNetworkExtended(extended_network[step-1], base_network, extended_network_name)
 
 	elif 'e' in args.mode:
