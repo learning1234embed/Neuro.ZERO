@@ -31,6 +31,15 @@ python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
 ```
 **--mode**: Which network to be created. The examples creates a baseline (b) network.   
 **--layers**: Specify the layers of the network. The example creates a network with total seven layers, i.e., 28\*28\*1 (input), 3\*3\*1\*2 (Conv1), 3\*3\*2\*4 (Conv2), 3\*3\*4\*8 (Conv3), 64 (Fully-connected 1), 128 (Fully-connected 2), 10 (output).
+```sh
+Cloning into 'Neuro.ZERO'...
+remote: Enumerating objects: 456, done.
+remote: Counting objects: 100% (456/456), done.
+remote: Compressing objects: 100% (256/256), done.
+remote: Total 456 (delta 203), reused 393 (delta 166), pack-reused 0
+Receiving objects: 100% (456/456), 534.42 KiB | 4.49 MiB/s, done.
+Resolving deltas: 100% (203/203), done.
+```
 
 Train the baseline network
 python NeuroZERO.py --mode=t --network=baseline --data=mnist_data
