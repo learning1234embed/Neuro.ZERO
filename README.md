@@ -1,16 +1,14 @@
 # Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems
 
 ## Introduction
-The code implements the paper titled "Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems", which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. Neuro.ZERO is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy.
-
-This code is written for Texas Instruments's [MSP430FR5994 microcontroller](http://www.ti.com/product/MSP430FR5994).
+The code implements the paper titled "Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems", which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. Neuro.ZERO is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy. This code is written for Texas Instruments's [MSP430FR5994 microcontroller](http://www.ti.com/product/MSP430FR5994).
 
 ## System Setup 
-1. Python install
+1. [Python](https://www.python.org/downloads/) install
 
-2. Tensorflow install
+2. [Tensorflow](https://www.tensorflow.org/) install
 
-3. CCS
+3. [Code Composer Studio (CCS)](http://www.ti.com/tool/CCSTUDIO) install
 
 Create a baseline network
 python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
