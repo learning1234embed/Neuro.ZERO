@@ -163,8 +163,8 @@ weight_len 10362
 bias_len 216
 [] Save NeuroZERO
 ```
-**--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the baseline network.   
-**--network**: Which network to train. The example trains the extended network (--network=baseline).  
+**--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
+**--network**: Which network to train. The example exports the baseline network (--network=baseline).  
 
 6. Export the network architecture and parameters of the extended network.
 ```sh
@@ -177,8 +177,46 @@ weight_len 22266
 bias_len 312
 [] Save NeuroZERO
 ```
-**--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the baseline network.   
-**--network**: Which network to train. The example trains the extended network (--network=extended).  
+**--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
+**--network**: Which network to train. The example exports the extended network (--network=extended).  
 
-Generate (build) the main MCU and accelerator binary
-python generate_binary.py --mode=ext
+7. Generate (build) the main MCU and accelerator binary (MSP430FRXXXX).
+```sh
+$ python generate_binary.py --mode=ext
+/Neuro.ZERO/extended_MAIN created
+baseline_param.h generated and copied
+extended_param.h generated and copied
+start compiling main MCU
+eclipse -noSplash -data "./" -application com.ti.ccstudio.apps.projectBuild -ccs.configuration Debug -ccs.autoImport -ccs.projects extended_MAIN
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+CCS headless build starting... [Fri Apr 12 17:18:21 EDT 2019] 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+================================================================================
+Pre processing...
+
+
+================================================================================
+Building...
+
+
+**** Build of configuration Debug for project extended_MAIN ****
+
+/home/seulki/ti/ccsv8/utils/bin/gmake -k -j 12 all -O 
+ 
+Building file: "../DSPLib/source/filter/msp_biquad_cascade_df2_q15.c"
+Invoking: MSP430 Compiler
+
+...
+
+Finished building target: "extended_ACC.out"
+ 
+
+**** Build Finished ****
+
+
+================================================================================
+CCS headless build complete! 0 out of 1 projects have errors.
+
+```
