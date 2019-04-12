@@ -89,7 +89,7 @@ took 23018.169 ms
 [] Save NeuroZERO
 ```
 **--mode=t**: Which command the Neuro.ZERO performs. The example trains a network (--mode=t).   
-**--network**: Which network to train. The example trains the baseline (baseline) network.
+**--network**: Which network to train. The example trains the baseline (baseline) network.  
 **--data**: The train data. The example uses MNIST data for training.
 
 Create an extended network based on the baseline network
