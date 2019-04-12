@@ -60,7 +60,7 @@ new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
 [] Save NeuroZERO
 
 ```
-**--mode**: Which command the Neuro.ZERO performs. The example creates a baseline (--mode=b) network.   
+**--mode**: Which command the Neuro.ZERO performs. The example creates a baseline network  (--mode=b).   
 **--layers**: The layers and architecture of the network to be created. The example creates a network with total seven layers, i.e., 28\*28\*1 (input), 3\*3\*1\*2 (Conv1), 3\*3\*2\*4 (Conv2), 3\*3\*4\*8 (Conv3), 64 (Fully-connected 1), 128 (Fully-connected 2), 10 (output).
 
 
