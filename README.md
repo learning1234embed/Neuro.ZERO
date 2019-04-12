@@ -23,9 +23,12 @@ export PATH=$PATH:/home/ti/ccsv8/eclipse/
 ```
 
 ## Extended Inference
+The following shows an example of generating extended inference with [MNIST](http://yann.lecun.com/exdb/mnist/) dataset.
 
-Create a baseline network
+1. Create a baseline network to be extended (accelerated) with TensorFlow.
+```sh
 python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
+```
 
 Train the baseline network
 python NeuroZERO.py --mode=t --network=baseline --data=mnist_data
