@@ -79,7 +79,7 @@ step 200, training accuracy: 0.650000
 step 200, validation accuracy: 0.670500
 ...
 step 4800, training accuracy: 0.900000
-step 4800, validation accuracy: 0.928200
+step 4800, validation accuracy: 0.920200
 step 4900, training accuracy: 0.950000
 step 4900, validation accuracy: 0.923500
 step 4999, training accuracy: 0.940000
