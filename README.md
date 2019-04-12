@@ -14,7 +14,14 @@ It requires to install Python, TensorFlow (offline training) and Code Composer S
 
 4. Clone the Neuro.ZERO repository
 ```sh
-git clone https://github.com/learning1234embed/Neuro.ZERO.git
+$ git clone https://github.com/learning1234embed/Neuro.ZERO.git
+Cloning into 'Neuro.ZERO'...
+remote: Enumerating objects: 456, done.
+remote: Counting objects: 100% (456/456), done.
+remote: Compressing objects: 100% (256/256), done.
+remote: Total 456 (delta 203), reused 393 (delta 166), pack-reused 0
+Receiving objects: 100% (456/456), 534.42 KiB | 4.49 MiB/s, done.
+Resolving deltas: 100% (203/203), done.
 ```
 
 5. Set PATH for eclipse
@@ -27,22 +34,37 @@ The following shows an example of generating extended inference with [MNIST](htt
 
 1. Create a baseline network to be extended (accelerated) with TensorFlow.
 ```sh
-python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
+$ python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
+[] Create a new NeuroZERO
+[b] constructing a baseline network
+[b] layers: 28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
+constructNetwork 1: [[28, 28, 1], [3, 3, 1, 2], [3, 3, 2, 4], [3, 3, 4, 8], [64], [128], [10]]
+layer_type: ['input', 'conv', 'max_pool', 'conv', 'max_pool', 'conv', 'max_pool', 'hidden', 'hidden', 'output']
+num_of_neuron_per_layer: [[28, 28, 1], [13, 13, 2], [5, 5, 4], [1, 1, 8], [64], [128], [10]]
+num_of_weight_per_layer: [18, 72, 288, 512, 8192, 1280]
+num_of_bias_per_layer: [2, 4, 8, 64, 128, 10]
+layers [[28, 28, 1], [3, 3, 1, 2], [3, 3, 2, 4], [3, 3, 4, 8], [64], [128], [10]]
+Tensor("neuron_0:0", shape=(?, 28, 28, 1), dtype=float32)
+conv_parameter {'weights': <tf.Variable 'weight_0:0' shape=(3, 3, 1, 2) dtype=float32_ref>, 'biases': <tf.Variable 'bias_0:0' shape=(2,) dtype=float32_ref>}
+new_neuron Tensor("neuron_1:0", shape=(?, 13, 13, 2), dtype=float32)
+conv_parameter {'weights': <tf.Variable 'weight_1:0' shape=(3, 3, 2, 4) dtype=float32_ref>, 'biases': <tf.Variable 'bias_1:0' shape=(4,) dtype=float32_ref>}
+new_neuron Tensor("neuron_2:0", shape=(?, 5, 5, 4), dtype=float32)
+conv_parameter {'weights': <tf.Variable 'weight_2:0' shape=(3, 3, 4, 8) dtype=float32_ref>, 'biases': <tf.Variable 'bias_2:0' shape=(8,) dtype=float32_ref>}
+new_neuron Tensor("neuron_3:0", shape=(?, 1, 1, 8), dtype=float32)
+fc_parameter {'weights': <tf.Variable 'weight_3:0' shape=(8, 64) dtype=float32_ref>, 'biases': <tf.Variable 'bias_3:0' shape=(64,) dtype=float32_ref>}
+new_neuron Tensor("neuron_4:0", shape=(?, 64), dtype=float32)
+fc_parameter {'weights': <tf.Variable 'weight_4:0' shape=(64, 128) dtype=float32_ref>, 'biases': <tf.Variable 'bias_4:0' shape=(128,) dtype=float32_ref>}
+new_neuron Tensor("neuron_5:0", shape=(?, 128), dtype=float32)
+fc_parameter {'weights': <tf.Variable 'weight_5:0' shape=(128, 10) dtype=float32_ref>, 'biases': <tf.Variable 'bias_5:0' shape=(10,) dtype=float32_ref>}
+new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
+[] Save NeuroZERO
+
 ```
 **--mode**: Which network to be created. The examples creates a baseline (b) network.   
 **--layers**: Specify the layers of the network. The example creates a network with total seven layers, i.e., 28\*28\*1 (input), 3\*3\*1\*2 (Conv1), 3\*3\*2\*4 (Conv2), 3\*3\*4\*8 (Conv3), 64 (Fully-connected 1), 128 (Fully-connected 2), 10 (output).
-```sh
-$ git clone https://github.com/learning1234embed/Neuro.ZERO.git
-Cloning into 'Neuro.ZERO'...
-remote: Enumerating objects: 456, done.
-remote: Counting objects: 100% (456/456), done.
-remote: Compressing objects: 100% (256/256), done.
-remote: Total 456 (delta 203), reused 393 (delta 166), pack-reused 0
-Receiving objects: 100% (456/456), 534.42 KiB | 4.49 MiB/s, done.
-Resolving deltas: 100% (203/203), done.
-```
 
-2. Train the baseline network with TensorFlow.
+
+2. Train the newly-created baseline network with TensorFlow.
 python NeuroZERO.py --mode=t --network=baseline --data=mnist_data
 
 Create an extended network based on the baseline network
