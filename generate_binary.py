@@ -140,28 +140,7 @@ def main(args):
 
 def parse_arguments(argv):
 	parser = argparse.ArgumentParser()
-
 	parser.add_argument('--mode', type=str,	help='mode', default='s')
-	# network
-	# s: show the current status of NeuroZERO (--mode=s)
-	# c: construct a base network (--mode=c --data --layers)
-	# d: destruct a network 
-	# t: train a network
-	# i: inference of a network
-	# e: export weights and bias to a file
-
-	parser.add_argument('--layers', type=str, help='layers', default=None)
-	# CNN layer: 4 dimensions (height, width, depth, num of filters) [ex. 3,3,3,8]
-	# Fully-connected layer: any dimension less than 4 [ex. 128 / 128*128 / 128*128*1]
-
-	parser.add_argument('--data', type=str, help='data', default=None)
-	parser.add_argument('--network_no', type=int, help='network_no', default=-1)
-	parser.add_argument('--base_network_no', type=int, help='base_network_no', default=-1)
-	parser.add_argument('--ensemble_network_no', type=str, help='ensemble_network_no', default=None)
-	parser.add_argument('--vnn_no', type=int, help='vnn_no', default=-1)
-	parser.add_argument('--name', type=str, help='name', default=None)
-	parser.add_argument('--save', type=bool, help='save NeuroZERO?', default=True)
-
 	return parser.parse_args(argv)
 
 if __name__ == '__main__':
