@@ -1,7 +1,7 @@
 # Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems
 
 ## Introduction
-The code implements the paper titled "Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems", which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. Neuro.ZERO is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy. This code is written for Texas Instruments's [MSP430FR5994 microcontroller](http://www.ti.com/product/MSP430FR5994).
+The code implements the paper titled "Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems", which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. Neuro.ZERO is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy. This code implements the four modes of acceleration, i.e., extended inference, expedited inference, ensembled inference, and latent training for Texas Instruments's [MSP430FR5994 microcontroller](http://www.ti.com/product/MSP430FR5994).
 
 ## System Setup 
 1. [Python](https://www.python.org/downloads/) install
