@@ -164,7 +164,7 @@ bias_len 216
 [] Save NeuroZERO
 ```
 **--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
-**--network**: Which network to train. The example exports the baseline network (--network=baseline).  
+**--network**: Which network to export. The example exports the baseline network (--network=baseline).  
 
 6. Export the network architecture and parameters of the extended network for MSP430FRXXXX binary generation.
 ```sh
@@ -178,9 +178,9 @@ bias_len 312
 [] Save NeuroZERO
 ```
 **--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
-**--network**: Which network to train. The example exports the extended network (--network=extended). 
+**--network**: Which network to export. The example exports the extended network (--network=extended). 
 
-7. Generate (build) the main MCU and accelerator binary (MSP430FRXXXX). The output binary for the main MCU and the accelerator are generated under 'extended_MAIN/' and 'extended_ACC/' folders, respectively.
+7. Generate (build) the main MCU and accelerator binary (MSP430FRXXXX). The output binary for the main MCU and the accelerator are located at the 'extended_MAIN/' and 'extended_ACC/' folders, respectively.
 ```sh
 $ python generate_binary.py --mode=ext
 /Neuro.ZERO/extended_MAIN created
