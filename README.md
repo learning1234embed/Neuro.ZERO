@@ -24,7 +24,7 @@ Receiving objects: 100% (456/456), 534.42 KiB | 4.49 MiB/s, done.
 Resolving deltas: 100% (203/203), done.
 ```
 
-5. Set PATH for eclipse
+5. Set PATH for eclipse execution.
 ```sh
 export PATH=$PATH:/home/ti/ccsv8/eclipse/
 ```
