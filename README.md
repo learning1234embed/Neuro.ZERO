@@ -29,8 +29,7 @@ The following shows an example of generating extended inference with [MNIST](htt
 ```sh
 python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
 ```
---mode=b: We are creating a baseline network.
---layers: Specify the layers of the network. The example has total seven layers.
+--mode=b: We are creating a baseline network.  --layers: Specify the layers of the network. The example has total seven layers.
 
 Train the baseline network
 python NeuroZERO.py --mode=t --network=baseline --data=mnist_data
