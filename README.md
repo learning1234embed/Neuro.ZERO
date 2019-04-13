@@ -10,8 +10,10 @@ Neuro.ZERO requires Python, TensorFlow (for training) and Code Composer Studio (
 
 2. Install [Tensorflow](https://www.tensorflow.org/).
 
-3. Install [Code Composer Studio (CCS)](http://www.ti.com/tool/CCSTUDIO).
-
+3. Install [Code Composer Studio (CCS)](http://www.ti.com/tool/CCSTUDIO) and set PATH for eclipse execution.
+```sh
+export PATH=$PATH:/home/ti/ccsv8/eclipse/
+```
 4. Clone the Neuro.ZERO repository.
 ```sh
 $ git clone https://github.com/learning1234embed/Neuro.ZERO.git
@@ -23,13 +25,7 @@ remote: Total 456 (delta 203), reused 393 (delta 166), pack-reused 0
 Receiving objects: 100% (456/456), 534.42 KiB | 4.49 MiB/s, done.
 Resolving deltas: 100% (203/203), done.
 ```
-
-5. Set PATH for eclipse execution.
-```sh
-export PATH=$PATH:/home/ti/ccsv8/eclipse/
-```
-
-## Extended Inference (Step by Step)
+## Extended Inference (Step by Step Guide with MNIST)
 The following shows an example of generating extended inference with [MNIST](http://yann.lecun.com/exdb/mnist/) dataset.
 
 1. Create a baseline network to be extended (accelerated) with TensorFlow.
