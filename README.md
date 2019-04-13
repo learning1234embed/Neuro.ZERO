@@ -87,7 +87,7 @@ took 23018.169 ms
 **--network**: Which network to train. The example trains the baseline network (--network=baseline).  
 **--data**: The train data. The example uses MNIST data for training (--data=mnist_data).
 
-3. Create an extended network by expanding the baseline network, which brings higher accuracy. Its architecture and layer is automatically determined based on the baseline network.
+3. Create an extended network by expanding the baseline network, which is expected to provide better performance (higher classification accuracy). Its architecture and layers formation are automatically determined based on the baseline network.
 ```sh
 $ python NeuroZERO.py --mode=ext
 [] Load NeuroZERO
