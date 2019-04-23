@@ -18,6 +18,7 @@ param_filename = "_param.h"
 skeleton_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'skeleton/')
 extended_MAIN_dir = os.path.join(skeleton_dir, 'extended_MAIN/')
 extended_ACC_dir = os.path.join(skeleton_dir, 'extended_ACC/')
+latent_train_ACC_dir = os.path.join(skeleton_dir, 'latent_train_ACC/')
 build_command = "eclipse -noSplash -data \"./\" -application com.ti.ccstudio.apps.projectBuild -ccs.configuration Debug -ccs.autoImport -ccs.projects "
 
 
@@ -137,6 +138,26 @@ def main(args):
 		print build_command + os.path.basename(os.path.normpath(ACC_target_dir))
 		os.system(build_command + os.path.basename(os.path.normpath(ACC_target_dir)))
 
+	if args.mode == 'latent':
+		if os.path.exists('.metadata'):
+			shutil.rmtree('.metadata')
+
+		# accelerator
+		ACC_src_dir = latent_train_ACC_dir
+		ACC_target_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), os.path.basename(os.path.normpath(ACC_src_dir)))
+		if not os.path.exists(ACC_target_dir):
+			copyAll(ACC_src_dir, ACC_target_dir)
+			print ACC_target_dir + ' created'
+
+		filename = generate_param(NeuroZERO.extended_network_name)
+		if not os.path.exists(os.path.join(ACC_target_dir, filename)):
+			copyAll(filename, ACC_target_dir)
+			os.remove(filename)
+			print filename + ' generated and copied'
+
+		print 'start compiling accelerator'
+		print build_command + os.path.basename(os.path.normpath(ACC_target_dir))
+		os.system(build_command + os.path.basename(os.path.normpath(ACC_target_dir)))
 
 def parse_arguments(argv):
 	parser = argparse.ArgumentParser()
