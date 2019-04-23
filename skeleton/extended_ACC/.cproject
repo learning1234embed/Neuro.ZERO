@@ -48,7 +48,6 @@
 								<option id="com.ti.ccstudio.buildDefinitions.MSP430_18.1.compilerID.DISPLAY_ERROR_NUMBER.761738935" name="Emit diagnostic identifier numbers (--display_error_number, -pden)" superClass="com.ti.ccstudio.buildDefinitions.MSP430_18.1.compilerID.DISPLAY_ERROR_NUMBER" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP430_18.1.compilerID.DIAG_WRAP.955105094" name="Wrap diagnostic messages (--diag_wrap)" superClass="com.ti.ccstudio.buildDefinitions.MSP430_18.1.compilerID.DIAG_WRAP" useByScannerDiscovery="false" value="com.ti.ccstudio.buildDefinitions.MSP430_18.1.compilerID.DIAG_WRAP.off" valueType="enumerated"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP430_18.1.compilerID.INCLUDE_PATH.1717044429" name="Add dir to #include search path (--include_path, -I)" superClass="com.ti.ccstudio.buildDefinitions.MSP430_18.1.compilerID.INCLUDE_PATH" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/seulki/ti/msp430ware_3_80_06_03/iqmathlib/include"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/driverlib/MSP430FR5xx_6xx}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/driverlib/MSP430FR5xx_6xx/inc}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/DSPLib/include}"/>
