@@ -1,7 +1,7 @@
 # Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems
 
 ## Introduction
-This code implements the paper titled **"Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems"**, which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. Neuro.ZERO is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy. This code implements Neuro.ZERO's extended inference that increases the classification accuracy of a DNN by automatically generating an executable binary for it which runs on the Texas Instruments's [MSP430FRXXXX microcontroller](http://www.ti.com/product/MSP430FR5994).
+This code implements the paper titled **"Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems"**, which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. Neuro.ZERO is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy. This code implements Neuro.ZERO's 1) extended inferencethat increases the classification accuracy of a DNN, and 2) latent training  by automatically generating an executable binary for it which runs on the Texas Instruments's [MSP430FRXXXX microcontroller](http://www.ti.com/product/MSP430FR5994).
 
 ## Software Install and Setup 
 Neuro.ZERO requires Python, TensorFlow (for training) and Code Composer Studio (for MSP430FRXXXX binary generation). The path environment also needs to be set for the execution of eclipse (CCS).
@@ -25,7 +25,7 @@ remote: Total 456 (delta 203), reused 393 (delta 166), pack-reused 0
 Receiving objects: 100% (456/456), 534.42 KiB | 4.49 MiB/s, done.
 Resolving deltas: 100% (203/203), done.
 ```
-## Extended Inference (Step by Step Guide with MNIST)
+## 1. Extended Inference (Step by Step Guide with MNIST)
 The following shows an example of generating extended inference with [MNIST](http://yann.lecun.com/exdb/mnist/) dataset.
 
 1. Create a baseline network to be extended (accelerated) with TensorFlow.
@@ -215,4 +215,10 @@ Finished building target: "extended_ACC.out"
 ================================================================================
 CCS headless build complete! 0 out of 1 projects have errors.
 
+```
+
+## 2. Latent training
+The following generates an executable accelerator binary for MSP430FRXXXX.
+```sh
+$ python generate_binary.py --mode=latent
 ```
