@@ -35,6 +35,7 @@ The following shows an example of generating extended inference with [MNIST](htt
 
 **Step 1.** Create a baseline network to be extended (accelerated) with TensorFlow.
 ```sh
+$ cd Neuro.ZERO/
 $ python NeuroZERO.py --mode=base --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
 [] Create a new NeuroZERO
 [base] constructing a baseline network
