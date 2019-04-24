@@ -3,7 +3,7 @@
 ## Introduction
 This repository implements the paper titled **"Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems"**, which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. *Neuro.ZERO* is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy.
 
-It implements Neuro.ZERO's two modes of acceleration, i.e., 1) *extended inference* that increases the classification accuracy, and 2) *latent training* that performs on-device online training of a DNN with the adaptive-scal fixed-point and skip-out training algorithm by automatically generating an executable binary which run on the Texas Instruments's [MSP430FRXXXX microcontroller](http://www.ti.com/product/MSP430FR5994).
+It implements Neuro.ZERO's two modes of acceleration, i.e., 1) *extended inference* that increases the classification accuracy, and 2) *latent training* that performs on-device online training of a DNN with the adaptive-scal fixed-point and skip-out training algorithm by automatically generating an executable binary which runs on the Texas Instruments's [MSP430FRXXXX microcontroller](http://www.ti.com/product/MSP430FR5994).
 
 &nbsp;
 ## Software Install and Setup 
