@@ -35,10 +35,10 @@ The following shows an example of generating extended inference with [MNIST](htt
 
 **Step 1.** Create a baseline network to be extended (accelerated) with TensorFlow.
 ```sh
-$ python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
+$ python NeuroZERO.py --mode=base --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
 [] Create a new NeuroZERO
-[b] constructing a baseline network
-[b] layers: 28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
+[base] constructing a baseline network
+[base] layers: 28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
 constructNetwork 1: [[28, 28, 1], [3, 3, 1, 2], [3, 3, 2, 4], [3, 3, 4, 8], [64], [128], [10]]
 layer_type: ['input', 'conv', 'max_pool', 'conv', 'max_pool', 'conv', 'max_pool', 'hidden', 'hidden', 'output']
 num_of_neuron_per_layer: [[28, 28, 1], [13, 13, 2], [5, 5, 4], [1, 1, 8], [64], [128], [10]]
