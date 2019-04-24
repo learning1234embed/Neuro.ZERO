@@ -61,8 +61,8 @@ new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
 [] Save NeuroZERO
 
 ```
-**--mode**: Which command the Neuro.ZERO performs. The example creates a baseline network  (--mode=b).   
-**--layers**: The layers and architecture of the network to be created. The example creates a network with total seven layers, i.e., 28\*28\*1 (input), 3\*3\*1\*2 (Conv1), 3\*3\*2\*4 (Conv2), 3\*3\*4\*8 (Conv3), 64 (Fully-connected 1), 128 (Fully-connected 2), 10 (output).
+*--mode*: Which command the Neuro.ZERO performs. The example creates a baseline network  (--mode=b).   
+*--layers*: The layers and architecture of the network to be created. The example creates a network with total seven layers, i.e., 28\*28\*1 (input), 3\*3\*1\*2 (Conv1), 3\*3\*2\*4 (Conv2), 3\*3\*4\*8 (Conv3), 64 (Fully-connected 1), 128 (Fully-connected 2), 10 (output).
 
 
 Step 2. Train the newly-created baseline network with TensorFlow.
@@ -88,9 +88,9 @@ step 4999, validation accuracy: 0.925200
 took 23018.169 ms
 [] Save NeuroZERO
 ```
-**--mode**: Which command the Neuro.ZERO performs. The example trains a network (--mode=t).   
-**--network**: Which network to train. The example trains the baseline network (--network=baseline).  
-**--data**: The train data. The example uses MNIST data for training (--data=mnist_data).
+*--mode*: Which command the Neuro.ZERO performs. The example trains a network (--mode=t).   
+*--network*: Which network to train. The example trains the baseline network (--network=baseline).  
+*--data*: The train data. The example uses MNIST data for training (--data=mnist_data).
 
 
 Step 3. Create an extended network by expanding the baseline network, which is expected to provide better performance (higher classification accuracy). Its architecture and layers formation are automatically determined based on the baseline network.
@@ -127,7 +127,7 @@ fc_parameter {'weights': <tf.Tensor 'weight_5:0' shape=(192, 10) dtype=float32>,
 new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
 [] Save NeuroZERO
 ```
-**--mode**: Which command the Neuro.ZERO performs. The example creates an extended (ext) network (--mode=ext).   
+*--mode*: Which command the Neuro.ZERO performs. The example creates an extended (ext) network (--mode=ext).   
 
 
 Step 4. Train the extended network.
@@ -151,9 +151,9 @@ step 4900, validation accuracy: 0.970300
 step 4999, training accuracy: 0.980000
 step 4999, validation accuracy: 0.972300
 ```
-**--mode**: Which command the Neuro.ZERO performs. The example trains a network (--mode=t).   
-**--network**: Which network to train. The example trains the extended network (--network=extended).  
-**--data**: The train data. The example uses MNIST data for training (--data=mnist_data).
+*--mode*: Which command the Neuro.ZERO performs. The example trains a network (--mode=t).   
+*--network*: Which network to train. The example trains the extended network (--network=extended).  
+*--data*: The train data. The example uses MNIST data for training (--data=mnist_data).
 
 
 Step 5. Export the network architecture and parameters of the baseline network for MSP430FRXXXX binary generation.
@@ -167,8 +167,8 @@ weight_len 10362
 bias_len 216
 [] Save NeuroZERO
 ```
-**--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
-**--network**: Which network to export. The example exports the baseline network (--network=baseline).  
+*--mode*: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
+*--network*: Which network to export. The example exports the baseline network (--network=baseline).  
 
 
 Step 6. Export the network architecture and parameters of the extended network for MSP430FRXXXX binary generation.
@@ -182,8 +182,8 @@ weight_len 22266
 bias_len 312
 [] Save NeuroZERO
 ```
-**--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
-**--network**: Which network to export. The example exports the extended network (--network=extended). 
+*--mode*: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
+*--network*: Which network to export. The example exports the extended network (--network=extended). 
 
 
 Step 7. Generate (compile) the main MCU and accelerator binary (MSP430FRXXXX). The code and output binary for the main MCU and the accelerator are located at the 'extended_MAIN/' and 'extended_ACC/' folders, respectively. The code for each MCU can be edited by a user and compiled mutilple times as needed.
@@ -224,8 +224,8 @@ Finished building target: "extended_ACC.out"
 
 ================================================================================
 CCS headless build complete! 0 out of 1 projects have errors.
-
 ```
+*--mode*: Generating a binary for which acceleration mode. The examples generates a binary for extended inference (--mode=ext).
 
 &nbsp;
 ## 2) Latent Training
@@ -266,6 +266,7 @@ Finished building target: "latent_train_ACC.out"
 ================================================================================
 CCS headless build complete! 0 out of 1 projects have errors.
 ```
+*--mode*: Generating a binary for which acceleration mode. The examples generates a binary for latent training (--mode=latent).
 
 When executing the generated latent training binary on the accelerator with CCS, the following log will come. It trains a fully-connected network with three layers (2x64x2) as an example. The architecture and layer of the network can be changed by editing the variables in the code.
 ```sh
