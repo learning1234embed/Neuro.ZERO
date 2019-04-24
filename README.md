@@ -3,6 +3,8 @@
 ## Introduction
 This code implements the paper titled **"Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems"**, which accelerates the run-time performance of a deep neural network (DNN) running on microcontroller-grade resource-constrained embedded systems. Neuro.ZERO is a novel co-processor architecture consisting of a main microcontroller unit (MCU) that executes scaled-down versions of deep neural network inference tasks, and an accelerator microcontroller unit that is powered by harvested energy. This code implements Neuro.ZERO's 1) *extended inference* that increases the classification accuracy, and 2) *latent training* that performs on-device online training of a DNN by automatically generating an executable binary which run on the Texas Instruments's [MSP430FRXXXX microcontroller](http://www.ti.com/product/MSP430FR5994).
 
+&nbsp;
+&nbsp;
 ## Software Install and Setup 
 Neuro.ZERO requires Python, TensorFlow (for training) and Code Composer Studio (for MSP430FRXXXX binary generation). The path environment also needs to be set for the execution of eclipse (CCS).
 
@@ -25,6 +27,8 @@ remote: Total 456 (delta 203), reused 393 (delta 166), pack-reused 0
 Receiving objects: 100% (456/456), 534.42 KiB | 4.49 MiB/s, done.
 Resolving deltas: 100% (203/203), done.
 ```
+&nbsp;
+&nbsp;
 ## 1) Extended Inference (Step by Step Guide with MNIST)
 The following shows an example of generating extended inference with [MNIST](http://yann.lecun.com/exdb/mnist/) dataset.
 
@@ -221,10 +225,8 @@ Finished building target: "extended_ACC.out"
 CCS headless build complete! 0 out of 1 projects have errors.
 
 ```
-
 &nbsp;
 &nbsp;
-
 ## 2) Latent Training
 The following python script generates an executable accelerator binary for MSP430FRXXXX which performs on-device online training on the accelerator. The train is performed with the proposed *Adaptive-Scale Fixed-Point (ASFP)* arithmetic and *Skip-Out training algorithm* which are described in the paper. The standard momentum gradient-update method and ReLU are used for training.
 ```sh
