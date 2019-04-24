@@ -876,14 +876,14 @@ def main(args):
 	if args.data is not None and args.data != '':
 		data = __import__(args.data)
 
-	if args.mode == 'b':
-		print '[b] constructing a baseline network'
+	if args.mode == 'base':
+		print '[base] constructing a baseline network'
 
 		if args.layers == None or args.layers == '':
-			print '[b] No layer. Use --layers'
+			print '[base] No layer. Use --layers'
 			return
 
-		print '[b] layers:', args.layers
+		print '[base] layers:', args.layers
 		nz.constructNetwork(nz.parse_layers(args.layers), baseline_network_name)
 
 	elif args.mode == 't':
