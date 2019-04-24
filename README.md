@@ -222,8 +222,8 @@ CCS headless build complete! 0 out of 1 projects have errors.
 
 ```
 
-$~$
-$~$
+&nbsp;
+&nbsp;
 
 ## 2) Latent Training
 The following python script generates an executable accelerator binary for MSP430FRXXXX which performs on-device online training on the accelerator. The train is performed with the proposed *Adaptive-Scale Fixed-Point (ASFP)* arithmetic and *Skip-Out training algorithm* which are described in the paper. The standard momentum gradient-update method and ReLU are used for training.
