@@ -309,10 +309,7 @@ static void init_weight(void)
         {
             random_weight = xavier_init(NUM_INPUT, NUM_HIDDEN);
             iqw(&weight_input[i][j], _IQ(random_weight));
-            //_iq31 weight = iqr(&weight_input[i][j]);
-            //printf("(%.9f, %.9f)", random_weight, _IQtoF(weight));
         }
-        //printf("\n");
     }
 
     for (hidden_layer = 0; hidden_layer < NUM_HIDDEN_LAYER - 1; hidden_layer++)
@@ -335,10 +332,7 @@ static void init_weight(void)
         {
             random_weight = xavier_init(NUM_HIDDEN, NUM_OUTPUT);
             iqw(&weight_output[i][j], _IQ(random_weight));
-            //_iq31 weight = iqr(&weight_output[i][j]);
-            //printf("(%f, %f)", random_weight, _IQtoF(weight));
         }
-        //printf("\n");
     }
 }
 
@@ -365,7 +359,6 @@ static uint16_t feed_forward()
     for (i = 0; i < NUM_HIDDEN; i++)
     {
         bias = iqr(&weight_input[i][NUM_INPUT]); // GLOBAL_IQ
-        //bias = bias >> 1; // GLOBAL_IQ-1
         sum = vector_dot_product_iq31(input, &weight_input[i], NUM_INPUT, NUM_INPUT); // IQ30 * GLOBAL_IQ = GLOBAL_IQ-1
         sum = sum << 7;
         sum = _IQ30mpy(sum, _IQ30((float)1.0 - avg_skipout));
@@ -380,7 +373,6 @@ static uint16_t feed_forward()
         for (j = 0; j < NUM_HIDDEN; j++)
         {
             bias = iqr(&weight_hidden[i][j][NUM_HIDDEN]); // GLOBAL_IQ
-            //bias = bias >> 1; // GLOBAL_IQ-1
             sum = vector_dot_product_iq31(&hidden[i], &weight_hidden[i][j], NUM_HIDDEN, NUM_HIDDEN); // IQ30 * GLOBAL_IQ = GLOBAL_IQ-1
             sum = sum << 7;
             sum = _IQ30mpy(sum, _IQ30((float)1.0 - avg_skipout));
@@ -394,7 +386,6 @@ static uint16_t feed_forward()
     for (i = 0; i < NUM_OUTPUT; i++)
     {
         bias = iqr(&weight_output[i][NUM_HIDDEN]); // GLOBAL_IQ
-        //bias = bias >> 1; // GLOBAL_IQ-1
         sum = vector_dot_product_iq31(&hidden[NUM_HIDDEN_LAYER-1], &weight_output[i], NUM_HIDDEN, NUM_HIDDEN); // IQ30 * GLOBAL_IQ = GLOBAL_IQ-1
         sum = sum << 7;
         sum = _IQ30mpy(sum, _IQ30((float)1.0 - avg_skipout));
@@ -403,12 +394,6 @@ static uint16_t feed_forward()
     }
 
     // softmax
-#if 0
-    _iq31 final_output[NUM_OUTPUT];
-    final_activate_iq31(output, final_output, NUM_OUTPUT);
-    copyData(final_output, output, sizeof(_iq31) * NUM_OUTPUT);
-#endif
-
     float output_f[NUM_OUTPUT];
     float final_output_f[NUM_OUTPUT];
 
@@ -434,7 +419,6 @@ static uint16_t feed_forward()
     if (status != MSP_SUCCESS)
         P1OUT |= BIT0;
 
-    //printf("max=%f index=%d\n", _IQtoF(max_output), max_output_index);
     return max_output_index;
 }
 
@@ -480,8 +464,6 @@ static void update_output_weight(uint16_t i, uint16_t j)
     input_neuron_a = newAdaptIQgiven(iqr(&hidden[NUM_HIDDEN_LAYER - 1][i]), GLOBAL_IQ);
     ground_truth_a = newAdaptIQ(-(float)ir((int *)&ground_truth_output[j]));
     neuron_a = newAdaptIQgiven(iqr(&output[j]), GLOBAL_IQ);
-    //delta = objective_diff(ground_truth, inferred_output) * final_activate_diff(ground_truth, inferred_output, inferred_output, j, j);
-    //delta = softmax_cross_entropy_diff(ground_truth, inferred_output);
     delta_a = adaptIQadd(neuron_a, ground_truth_a); // softmax_cross_entropy_diff
     gradient_a = adaptIQmpy(input_neuron_a, delta_a);
     update_weight(&weight_output[j][i], &weight_output_m[j][i], gradient_a);
@@ -493,10 +475,8 @@ static void update_output_weight(uint16_t i, uint16_t j)
 
     weight_a = newAdaptIQgiven(iqr(&weight_output[j][i]), GLOBAL_IQ);
     sum = adaptIQadd(delta_weight_sum_a[NUM_TOTAL_LAYER - 3][i], adaptIQmpy(delta_a, weight_a));
-    //printf("sum = %ld %d\n", sum.base, sum.iq);
     lw(&delta_weight_sum_a[NUM_TOTAL_LAYER - 3][i].base, sum.base);
     cw(&delta_weight_sum_a[NUM_TOTAL_LAYER - 3][i].iq, sum.iq);
-    //printf("sum = %ld %d\n", lr(&delta_weight_sum_a[NUM_TOTAL_LAYER - 3][i].base), cr(&delta_weight_sum_a[NUM_TOTAL_LAYER - 3][i].iq));
 }
 
 static void update_hidden_weight(uint16_t hidden_layer, uint16_t i, uint16_t j)
@@ -506,7 +486,6 @@ static void update_hidden_weight(uint16_t hidden_layer, uint16_t i, uint16_t j)
     adaptIQ sum;
 
     input_neuron_a = newAdaptIQgiven(iqr(&hidden[hidden_layer-1][i]), GLOBAL_IQ);
-    //neuron_a = newAdaptIQgiven(iqr(&hidden[hidden_layer][j]), GLOBAL_IQ);
     adaptIQ neuron_a_2 = newAdaptIQgiven(-iqr(&hidden[hidden_layer][j]), GLOBAL_IQ);
     adaptIQ inner_diff_a = newAdaptIQgiven(inner_activate_diff_iq31(iqr(&hidden[hidden_layer][j])), GLOBAL_IQ);
 
@@ -534,8 +513,6 @@ static void update_input_weight(uint16_t i, uint16_t j)
     adaptIQ sum;
 
     input_neuron_a = newAdaptIQgiven(iqr(&input[i]), GLOBAL_IQ);
-    //neuron_a = newAdaptIQgiven(iqr(&hidden[0][j]), GLOBAL_IQ);
-    //neuron_a_2 = newAdaptIQgiven(-iqr(&hidden[0][j]), GLOBAL_IQ);
     adaptIQ inner_diff_a = newAdaptIQgiven(inner_activate_diff_iq31(iqr(&hidden[0][j])), GLOBAL_IQ);
 
     sum.base = lr(&delta_weight_sum_a[0][j].base);
@@ -555,11 +532,9 @@ int drop()
     float r = rand();
 
     if (r < (float)RAND_MAX*skipout) {
-        //printf("yes\n");
         return 1;
     }
 
-    //printf("no\n");
     return 0;
 }
 
@@ -694,22 +669,12 @@ void train(void)
             copyData(&train_input[order], &input, NUM_INPUT*4);
             copyData(&train_output[order], ground_truth_output, NUM_OUTPUT*2);
 
-            //resetBenchmark();
-            //startBenchmark();
             feed_forward();
-            //stopBenchmark();
-            //printf("ff cyc:%lu\n", cycleCounts);
-
             skipout = random_skipout();
             printf("back_propagate[%d] skipout = %.9f\n", order, skipout);
-            //resetBenchmark();
-            //startBenchmark();
             back_propagate();
             count++;
-            //stopBenchmark();
-            //printf("bp cyc:%lu\n", cycleCounts);
             avg_skipout = (avg_skipout * (float)(count-1) + skipout) / (float)count;
-            //printf("avg_skipout = %.9f\n", avg_skipout);
         }
     }
 }
@@ -790,16 +755,9 @@ int main(void)
     initGpio();
 
     PM5CTL0 &= ~LOCKLPM5;           // Clear lock bit
-
-    // Store current GIE state
     gie = __get_SR_register() & GIE;
     __disable_interrupt();
-    // Flush Buffer to LCD
-    //Graphics_flushBuffer(&g_sContext);
-    // Restore original GIE state
     __bis_SR_register(gie);
-
-    // Starts the application. It is a function that never returns.
     init_train();
 
     while (1) {
