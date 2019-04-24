@@ -6,15 +6,15 @@ This code implements the paper titled **"Neuro.ZERO: A Zero-Energy Neural Networ
 ## Software Install and Setup 
 Neuro.ZERO requires Python, TensorFlow (for training) and Code Composer Studio (for MSP430FRXXXX binary generation). The path environment also needs to be set for the execution of eclipse (CCS).
 
-1. Install [Python](https://www.python.org/downloads/).
+Step 1. Install [Python](https://www.python.org/downloads/).
 
-2. Install [Tensorflow](https://www.tensorflow.org/).
+Step 2. Install [Tensorflow](https://www.tensorflow.org/).
 
-3. Install [Code Composer Studio (CCS)](http://www.ti.com/tool/CCSTUDIO) and set PATH for eclipse execution.
+Step 3. Install [Code Composer Studio (CCS)](http://www.ti.com/tool/CCSTUDIO) and set PATH for eclipse execution.
 ```sh
 export PATH=$PATH:/home/ti/ccsv8/eclipse/
 ```
-4. Clone the Neuro.ZERO repository.
+Step 4. Clone the Neuro.ZERO repository.
 ```sh
 $ git clone https://github.com/learning1234embed/Neuro.ZERO.git
 Cloning into 'Neuro.ZERO'...
@@ -28,7 +28,7 @@ Resolving deltas: 100% (203/203), done.
 ## 1) Extended Inference (Step by Step Guide with MNIST)
 The following shows an example of generating extended inference with [MNIST](http://yann.lecun.com/exdb/mnist/) dataset.
 
-1. Create a baseline network to be extended (accelerated) with TensorFlow.
+Step 1. Create a baseline network to be extended (accelerated) with TensorFlow.
 ```sh
 $ python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
 [] Create a new NeuroZERO
@@ -60,7 +60,7 @@ new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
 **--layers**: The layers and architecture of the network to be created. The example creates a network with total seven layers, i.e., 28\*28\*1 (input), 3\*3\*1\*2 (Conv1), 3\*3\*2\*4 (Conv2), 3\*3\*4\*8 (Conv3), 64 (Fully-connected 1), 128 (Fully-connected 2), 10 (output).
 
 
-2. Train the newly-created baseline network with TensorFlow.
+Step 2. Train the newly-created baseline network with TensorFlow.
 ```sh
 $ python NeuroZERO.py --mode=t --network=baseline --data=mnist_data
 [t] train
@@ -87,7 +87,8 @@ took 23018.169 ms
 **--network**: Which network to train. The example trains the baseline network (--network=baseline).  
 **--data**: The train data. The example uses MNIST data for training (--data=mnist_data).
 
-3. Create an extended network by expanding the baseline network, which is expected to provide better performance (higher classification accuracy). Its architecture and layers formation are automatically determined based on the baseline network.
+
+Step 3. Create an extended network by expanding the baseline network, which is expected to provide better performance (higher classification accuracy). Its architecture and layers formation are automatically determined based on the baseline network.
 ```sh
 $ python NeuroZERO.py --mode=ext
 [] Load NeuroZERO
@@ -123,7 +124,8 @@ new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
 ```
 **--mode**: Which command the Neuro.ZERO performs. The example creates an extended (ext) network (--mode=ext).   
 
-4. Train the extended network.
+
+Step 4. Train the extended network.
 ```sh
 $ python NeuroZERO.py --mode=t --network=extended --data=mnist_data
 [t] train
@@ -148,7 +150,8 @@ step 4999, validation accuracy: 0.972300
 **--network**: Which network to train. The example trains the extended network (--network=extended).  
 **--data**: The train data. The example uses MNIST data for training (--data=mnist_data).
 
-5. Export the network architecture and parameters of the baseline network for MSP430FRXXXX binary generation.
+
+Step 5. Export the network architecture and parameters of the baseline network for MSP430FRXXXX binary generation.
 ```sh
 $ python NeuroZERO.py --mode=e --network=baseline
 [] Load NeuroZERO
@@ -162,7 +165,8 @@ bias_len 216
 **--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
 **--network**: Which network to export. The example exports the baseline network (--network=baseline).  
 
-6. Export the network architecture and parameters of the extended network for MSP430FRXXXX binary generation.
+
+Step 6. Export the network architecture and parameters of the extended network for MSP430FRXXXX binary generation.
 ```sh
 $ python NeuroZERO.py --mode=e --network=extended
 [] Load NeuroZERO
@@ -176,7 +180,8 @@ bias_len 312
 **--mode**: Which command the Neuro.ZERO performs. The examples exports (--mode=e) the architecture and parameters of the network.   
 **--network**: Which network to export. The example exports the extended network (--network=extended). 
 
-7. Generate (compile) the main MCU and accelerator binary (MSP430FRXXXX). The code and output binary for the main MCU and the accelerator are located at the 'extended_MAIN/' and 'extended_ACC/' folders, respectively. The code for each MCU can be edited by a user and compiled mutilple times as needed.
+
+Step 7. Generate (compile) the main MCU and accelerator binary (MSP430FRXXXX). The code and output binary for the main MCU and the accelerator are located at the 'extended_MAIN/' and 'extended_ACC/' folders, respectively. The code for each MCU can be edited by a user and compiled mutilple times as needed.
 ```sh
 $ python generate_binary.py --mode=ext
 Neuro.ZERO/extended_MAIN created
@@ -216,6 +221,8 @@ Finished building target: "extended_ACC.out"
 CCS headless build complete! 0 out of 1 projects have errors.
 
 ```
+
+
 
 ## 2) Latent Training
 The following python script generates an executable accelerator binary for MSP430FRXXXX which performs on-device online training on the accelerator. The train is performed with the proposed *Adaptive-Scale Fixed-Point (ASFP)* arithmetic and *Skip-Out training algorithm* which are described in the paper. The standard momentum gradient-update method and ReLU are used for training.
