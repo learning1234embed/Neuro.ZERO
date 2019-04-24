@@ -199,7 +199,7 @@ Building...
 
 **** Build of configuration Debug for project extended_MAIN ****
 
-/home/.../ti/ccsv8/utils/bin/gmake -k -j 12 all -O 
+/home/XXX/ti/ccsv8/utils/bin/gmake -k -j 12 all -O 
  
 Building file: "../DSPLib/source/filter/msp_biquad_cascade_df2_q15.c"
 Invoking: MSP430 Compiler
@@ -235,7 +235,7 @@ Building...
 
 **** Build of configuration Debug for project latent_train_ACC **** 
 
-/home/seulki/ti/ccsv8/utils/bin/gmake -k -j 12 all -O 
+/home/XXX/ti/ccsv8/utils/bin/gmake -k -j 12 all -O 
  
 Building file: "../DSPLib/source/filter/msp_biquad_cascade_df2_ext_q15.c"
 Invoking: MSP430 Compiler
