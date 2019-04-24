@@ -179,7 +179,7 @@ bias_len 312
 7. Generate (compile) the main MCU and accelerator binary (MSP430FRXXXX). The code and output binary for the main MCU and the accelerator are located at the 'extended_MAIN/' and 'extended_ACC/' folders, respectively. The code for each MCU can be edited by a user and compiled mutilple times as needed.
 ```sh
 $ python generate_binary.py --mode=ext
-/Neuro.ZERO/extended_MAIN created
+Neuro.ZERO/extended_MAIN created
 baseline_param.h generated and copied
 extended_param.h generated and copied
 start compiling main MCU
@@ -221,6 +221,10 @@ CCS headless build complete! 0 out of 1 projects have errors.
 The following script generates an executable accelerator binary for MSP430FRXXXX which performs on-device online training on the accelerator. The train is performed with the proposed *Adaptive-Scale Fixed-Point (ASFP)* arithmetic and *Skip-Out training algorithm* which are decribed in the paper.
 ```sh
 $ python generate_binary.py --mode=latent
+Neuro.ZERO/latent_train_ACC created
+start compiling accelerator
+eclipse -noSplash -data "./" -application com.ti.ccstudio.apps.projectBuild -ccs.configuration Debug -ccs.autoImport -ccs.projects latent_train_ACC
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 CCS headless build starting... [Tue Apr 23 19:46:28 EDT 2019] 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
