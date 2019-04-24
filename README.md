@@ -25,7 +25,7 @@ remote: Total 456 (delta 203), reused 393 (delta 166), pack-reused 0
 Receiving objects: 100% (456/456), 534.42 KiB | 4.49 MiB/s, done.
 Resolving deltas: 100% (203/203), done.
 ```
-## 1. Extended Inference (Step by Step Guide with MNIST)
+## 1) Extended Inference (Step by Step Guide with MNIST)
 The following shows an example of generating extended inference with [MNIST](http://yann.lecun.com/exdb/mnist/) dataset.
 
 1. Create a baseline network to be extended (accelerated) with TensorFlow.
@@ -217,7 +217,7 @@ CCS headless build complete! 0 out of 1 projects have errors.
 
 ```
 
-## 2. Latent training
+## 2) Latent training
 The following python script generates an executable accelerator binary for MSP430FRXXXX which performs on-device online training on the accelerator. The train is performed with the proposed *Adaptive-Scale Fixed-Point (ASFP)* arithmetic and *Skip-Out training algorithm* which are decribed in the paper.
 ```sh
 $ python generate_binary.py --mode=latent
