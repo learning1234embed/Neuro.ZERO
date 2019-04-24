@@ -33,7 +33,7 @@ Resolving deltas: 100% (203/203), done.
 ## 1) Extended Inference (Step by Step Guide with MNIST)
 The following shows an example of generating extended inference with [MNIST](http://yann.lecun.com/exdb/mnist/) dataset.
 
-Step 1. Create a baseline network to be extended (accelerated) with TensorFlow.
+**Step 1.** Create a baseline network to be extended (accelerated) with TensorFlow.
 ```sh
 $ python NeuroZERO.py --mode=b --layers=28*28*1,3*3*1*2,3*3*2*4,3*3*4*8,64,128,10
 [] Create a new NeuroZERO
@@ -65,7 +65,7 @@ new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
 *--layers*: The layers and architecture of the network to be created. The example creates a network with total seven layers, i.e., 28\*28\*1 (input), 3\*3\*1\*2 (Conv1), 3\*3\*2\*4 (Conv2), 3\*3\*4\*8 (Conv3), 64 (Fully-connected 1), 128 (Fully-connected 2), 10 (output).
 
 
-Step 2. Train the newly-created baseline network with TensorFlow.
+**Step 2.** Train the newly-created baseline network with TensorFlow.
 ```sh
 $ python NeuroZERO.py --mode=t --network=baseline --data=mnist_data
 [t] train
@@ -93,7 +93,7 @@ took 23018.169 ms
 *--data*: The train data. The example uses MNIST data for training (--data=mnist_data).
 
 
-Step 3. Create an extended network by expanding the baseline network, which is expected to provide better performance (higher classification accuracy). Its architecture and layers formation are automatically determined based on the baseline network.
+**Step 3.** Create an extended network by expanding the baseline network, which is expected to provide better performance (higher classification accuracy). Its architecture and layers formation are automatically determined based on the baseline network.
 ```sh
 $ python NeuroZERO.py --mode=ext
 [] Load NeuroZERO
@@ -130,7 +130,7 @@ new_neuron Tensor("neuron_6:0", shape=(?, 10), dtype=float32)
 *--mode*: Which command the Neuro.ZERO performs. The example creates an extended (ext) network (--mode=ext).   
 
 
-Step 4. Train the extended network.
+**Step 4.** Train the extended network.
 ```sh
 $ python NeuroZERO.py --mode=t --network=extended --data=mnist_data
 [t] train
@@ -156,7 +156,7 @@ step 4999, validation accuracy: 0.972300
 *--data*: The train data. The example uses MNIST data for training (--data=mnist_data).
 
 
-Step 5. Export the network architecture and parameters of the baseline network for MSP430FRXXXX binary generation.
+**Step 5.** Export the network architecture and parameters of the baseline network for MSP430FRXXXX binary generation.
 ```sh
 $ python NeuroZERO.py --mode=e --network=baseline
 [] Load NeuroZERO
@@ -171,7 +171,7 @@ bias_len 216
 *--network*: Which network to export. The example exports the baseline network (--network=baseline).  
 
 
-Step 6. Export the network architecture and parameters of the extended network for MSP430FRXXXX binary generation.
+**Step 6.** Export the network architecture and parameters of the extended network for MSP430FRXXXX binary generation.
 ```sh
 $ python NeuroZERO.py --mode=e --network=extended
 [] Load NeuroZERO
@@ -186,7 +186,7 @@ bias_len 312
 *--network*: Which network to export. The example exports the extended network (--network=extended). 
 
 
-Step 7. Generate (compile) the main MCU and accelerator binary (MSP430FRXXXX). The code and output binary for the main MCU and the accelerator are located at the 'extended_MAIN/' and 'extended_ACC/' folders, respectively. The code for each MCU can be edited by a user and compiled mutilple times as needed.
+**Step 7.** Generate (compile) the main MCU and accelerator binary (MSP430FRXXXX). The code and output binary for the main MCU and the accelerator are located at the 'extended_MAIN/' and 'extended_ACC/' folders, respectively. The code for each MCU can be edited by a user and compiled mutilple times as needed.
 ```sh
 $ python generate_binary.py --mode=ext
 Neuro.ZERO/extended_MAIN created
