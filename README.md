@@ -221,4 +221,33 @@ CCS headless build complete! 0 out of 1 projects have errors.
 The following script generates an executable accelerator binary for MSP430FRXXXX which performs on-device online training on the accelerator. The train is performed with the proposed *Adaptive-Scale Fixed-Point (ASFP)* arithmetic and *Skip-Out training algorithm* which are decribed in the paper.
 ```sh
 $ python generate_binary.py --mode=latent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+CCS headless build starting... [Tue Apr 23 19:46:28 EDT 2019] 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+================================================================================
+Pre processing...
+
+
+================================================================================
+Building...
+
+
+**** Build of configuration Debug for project latent_train_ACC **** 
+
+/home/seulki/ti/ccsv8/utils/bin/gmake -k -j 12 all -O 
+ 
+Building file: "../DSPLib/source/filter/msp_biquad_cascade_df2_ext_q15.c"
+Invoking: MSP430 Compiler
+
+...
+
+Finished building target: "latent_train_ACC.out"
+ 
+
+**** Build Finished ****
+
+
+================================================================================
+CCS headless build complete! 0 out of 1 projects have errors.
 ```
