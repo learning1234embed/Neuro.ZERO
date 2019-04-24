@@ -611,8 +611,6 @@ void train(void)
     float loss;
     float total_loss = 0;
 
-    // fetch train_data, train_output from an external storage ...
-
     for (i = 0; i < NUM_TRAIN_DATA; i++) {
         train_order[i] = i;
     }
@@ -758,6 +756,7 @@ int main(void)
     gie = __get_SR_register() & GIE;
     __disable_interrupt();
     __bis_SR_register(gie);
+
     init_train();
 
     while (1) {
