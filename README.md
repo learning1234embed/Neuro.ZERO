@@ -268,7 +268,7 @@ CCS headless build complete! 0 out of 1 projects have errors.
 ```
 *--mode*: Generating a binary for which acceleration mode. The examples generates a binary for latent training (--mode=latent).
 
-When executing the generated latent training binary on the accelerator with CCS, the following log will come. It trains a fully-connected network with three layers (2x64x2) as an example. The architecture and layer of the network can be changed by editing the variables in the code.
+When executing the generated latent training binary on the accelerator with CCS, the following log will come. It trains a fully-connected network with three layers (2x64x2) as an simple example network. The architecture and layer of the network can be changed by editing the variables in the code.
 ```sh
 weight_input
 weight_output
