@@ -149,12 +149,6 @@ def main(args):
 			copyAll(ACC_src_dir, ACC_target_dir)
 			print ACC_target_dir + ' created'
 
-		filename = generate_param(NeuroZERO.extended_network_name)
-		if not os.path.exists(os.path.join(ACC_target_dir, filename)):
-			copyAll(filename, ACC_target_dir)
-			os.remove(filename)
-			print filename + ' generated and copied'
-
 		print 'start compiling accelerator'
 		print build_command + os.path.basename(os.path.normpath(ACC_target_dir))
 		os.system(build_command + os.path.basename(os.path.normpath(ACC_target_dir)))
