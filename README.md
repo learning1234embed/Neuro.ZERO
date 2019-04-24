@@ -255,3 +255,16 @@ Finished building target: "latent_train_ACC.out"
 ================================================================================
 CCS headless build complete! 0 out of 1 projects have errors.
 ```
+When executing the generated latent training binary on the accelerator with CCS, the following log will come. It trains a fully-connected network with three layers (2x64x2) as an example. The architecture and layer of the network can be changed by editing the variables in the code.
+```sh
+weight_input
+weight_output
+
+iteration 00000
+[0] 0.90000 0.10000 : 0.50062 0.49938 : 1.00000 0.00000 :loss = 0.691911876
+[1] 0.10000 0.90000 : 0.49958 0.50042 : 0.00000 1.00000 :loss = 0.692308426
+total_loss = 1.384220362
+
+back_propagate[0] skipout = 0.018585773
+back_propagate[1] skipout = 0.190466017
+```
