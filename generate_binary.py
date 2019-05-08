@@ -1,18 +1,9 @@
-import numpy as np
-import tensorflow as tf
 import os
-import copy
-import pickle 
-import matplotlib.pyplot as plt
 import struct
 import sys
 import argparse
-import importlib
 import shutil
-import errno
-import time
 import NeuroZERO
-from scipy.optimize import linear_sum_assignment
 
 param_filename = "_param.h"
 skeleton_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'skeleton/')
@@ -103,22 +94,22 @@ def main(args):
 		MAIN_target_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), os.path.basename(os.path.normpath(MAIN_src_dir)))
 		if not os.path.exists(MAIN_target_dir):
 			copyAll(MAIN_src_dir, MAIN_target_dir)
-			print MAIN_target_dir + ' created'
+			print (MAIN_target_dir + ' created')
 	
 		filename = generate_param(NeuroZERO.baseline_network_name)
 		if not os.path.exists(os.path.join(MAIN_target_dir, filename)):
 			copyAll(filename, MAIN_target_dir)
 			os.remove(filename)
-			print filename + ' generated and copied'
+			print (filename + ' generated and copied')
 
 		filename = generate_param(NeuroZERO.extended_network_name)
 		if not os.path.exists(os.path.join(MAIN_target_dir, filename)):
 			copyAll(filename, MAIN_target_dir)
 			os.remove(filename)
-			print filename + ' generated and copied'
+			print (filename + ' generated and copied')
 
-		print 'start compiling main MCU'
-		print build_command + os.path.basename(os.path.normpath(MAIN_target_dir))
+		print ('start compiling main MCU')
+		print (build_command + os.path.basename(os.path.normpath(MAIN_target_dir)))
 		os.system(build_command + os.path.basename(os.path.normpath(MAIN_target_dir)))
 
 		# accelerator 
@@ -126,16 +117,16 @@ def main(args):
 		ACC_target_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), os.path.basename(os.path.normpath(ACC_src_dir)))
 		if not os.path.exists(ACC_target_dir):
 			copyAll(ACC_src_dir, ACC_target_dir)
-			print ACC_target_dir + ' created'
+			print (ACC_target_dir + ' created')
 	
 		filename = generate_param(NeuroZERO.extended_network_name)
 		if not os.path.exists(os.path.join(ACC_target_dir, filename)):
 			copyAll(filename, ACC_target_dir)
 			os.remove(filename)
-			print filename + ' generated and copied'
+			print (filename + ' generated and copied')
 
-		print 'start compiling accelerator'
-		print build_command + os.path.basename(os.path.normpath(ACC_target_dir))
+		print ('start compiling accelerator')
+		print (build_command + os.path.basename(os.path.normpath(ACC_target_dir)))
 		os.system(build_command + os.path.basename(os.path.normpath(ACC_target_dir)))
 
 	if args.mode == 'latent':
@@ -147,10 +138,10 @@ def main(args):
 		ACC_target_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), os.path.basename(os.path.normpath(ACC_src_dir)))
 		if not os.path.exists(ACC_target_dir):
 			copyAll(ACC_src_dir, ACC_target_dir)
-			print ACC_target_dir + ' created'
+			print (ACC_target_dir + ' created')
 
-		print 'start compiling accelerator'
-		print build_command + os.path.basename(os.path.normpath(ACC_target_dir))
+		print ('start compiling accelerator')
+		print (build_command + os.path.basename(os.path.normpath(ACC_target_dir)))
 		os.system(build_command + os.path.basename(os.path.normpath(ACC_target_dir)))
 
 def parse_arguments(argv):
