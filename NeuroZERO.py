@@ -7,9 +7,7 @@ import struct
 import sys
 import argparse
 import importlib
-import shutil
 import time
-from scipy.optimize import linear_sum_assignment
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 NeuroZERO_filename = "NeuroZERO.obj"
