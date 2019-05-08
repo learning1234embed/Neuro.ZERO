@@ -82,7 +82,7 @@ class NeuroZERO:
 		return extended_network
 
 	def constructNetwork(self, layers, name=None):
-		print "constructNetwork %d:" % self.network_no, layers
+		print ("constructNetwork %d:" % self.network_no, layers)
 
 		if name is None:
 			network_name = "Network_" + str(self.network_no)
@@ -95,8 +95,8 @@ class NeuroZERO:
 		self.network_no += 1
 
 	def constructNetworkExtended(self, layers, base_network, name=None):
-		print "constructNetworkExtended %d:" % self.network_no, layers
-		print "base_network:", base_network
+		print ("constructNetworkExtended %d:" % self.network_no, layers)
+		print ("base_network:", base_network)
 
 		if name is None:
 			network_name = "Network_" + str(self.network_no)
@@ -170,22 +170,18 @@ class Network:
 				#	num_of_weight_per_layer.append(np.prod(layer)/layer[-1])
 				num_of_bias_per_layer.append(layer[3])
 
-				h = (num_of_neuron_per_layer[-1][0] - layer[0] + 2*pad) / stride + 1
-				w = (num_of_neuron_per_layer[-1][1] - layer[1] + 2*pad) / stride + 1
+				h = int((num_of_neuron_per_layer[-1][0] - layer[0] + 2*pad) / stride + 1)
+				w = int((num_of_neuron_per_layer[-1][1] - layer[1] + 2*pad) / stride + 1)
 				d = layer[3]
 
 				max_pool_f = 2
 				max_pool_stride = 2
 
-				h_max_pool = (h - max_pool_f) / max_pool_stride + 1
-				w_max_pool = (w - max_pool_f) / max_pool_stride + 1
+				h_max_pool = int((h - max_pool_f) / max_pool_stride + 1)
+				w_max_pool = int((w - max_pool_f) / max_pool_stride + 1)
 				d_max_pool = d
 
-				#if len(layer) == 4:
 				num_of_neuron_per_layer.append([h_max_pool,w_max_pool,d_max_pool])
-				#if len(layer) == 5:
-				#	num_of_neuron_per_layer.append([h_max_pool,w_max_pool,d_max_pool, 2])
-
 				layer_type.append('max_pool') 
 
 			else:
@@ -195,18 +191,18 @@ class Network:
 				num_of_bias_per_layer.append(np.prod(layer))
 				num_of_neuron_per_layer.append(layer)
 
-		print 'layer_type:', layer_type 
-		print 'num_of_neuron_per_layer:', num_of_neuron_per_layer
-		print 'num_of_weight_per_layer:', num_of_weight_per_layer
-		print 'num_of_bias_per_layer:', num_of_bias_per_layer
+		print ('layer_type:', layer_type)
+		print ('num_of_neuron_per_layer:', num_of_neuron_per_layer)
+		print ('num_of_weight_per_layer:', num_of_weight_per_layer)
+		print ('num_of_bias_per_layer:', num_of_bias_per_layer)
 
 		return layer_type, num_of_neuron_per_layer, num_of_weight_per_layer, num_of_bias_per_layer
 
 	def buildNetworkExtended(self, sess, base_network, graph):
 		layer_type = copy.deepcopy(base_network.layer_type)
-		layer_type = filter(lambda type: type != 'max_pool', layer_type)
+		layer_type = list(filter(lambda type: type != 'max_pool', layer_type))
 		layers = base_network.layers
-		print 'layers', layers
+		print ('layers', layers)
 		parameters = {}
 		base_neurons = {}
 		parameters_to_regularize = []
@@ -215,7 +211,7 @@ class Network:
 		keep_prob = tf.placeholder(tf.float32, name='keep_prob')
 
 		base_neurons[0] = tf.placeholder(tf.float32, [None]+layers[0], name=neuron_base_name+'0')
-		print base_neurons[0]
+		print (base_neurons[0])
 
 		for layer_no in range(1, len(layers)):
 			weight_name = weight_base_name + str(layer_no-1) + '_base'
@@ -231,7 +227,7 @@ class Network:
 				}
 
 				parameters[layer_no-1] = conv_parameter
-				print 'conv_parameter', parameters[layer_no-1]
+				print ('conv_parameter', parameters[layer_no-1])
 
 				rank = sess.run(tf.rank(base_neurons[layer_no-1]))
 
@@ -253,17 +249,17 @@ class Network:
 					strides=[1, k, k, 1], padding='VALID', name=neuron_name)
 
 				base_neurons[layer_no] = new_neuron
-				print 'new_neuron', new_neuron
+				print ('new_neuron', new_neuron)
 
 		layer_type = copy.deepcopy(self.layer_type)
-		layer_type = filter(lambda type: type != 'max_pool', layer_type)
+		layer_type = list(filter(lambda type: type != 'max_pool', layer_type))
 		layers = self.layers
 		parameters = {}
 		new_neurons = {}
 		parameters_to_regularize = []
 
 		new_neurons[0] = base_neurons[0]
-		print new_neurons[0]
+		print (new_neurons[0])
 
 		for layer_no in range(1, len(layers)):
 			weight_name = weight_base_name + str(layer_no-1)
@@ -284,7 +280,7 @@ class Network:
 				#parameters_to_regularize.append(tf.reshape(conv_parameter['biases'], [tf.size(conv_parameter['biases'])]))
 
 				parameters[layer_no-1] = conv_parameter
-				print 'conv_parameter', parameters[layer_no-1]
+				print ('conv_parameter', parameters[layer_no-1])
 
 				rank = sess.run(tf.rank(new_neurons[layer_no-1]))
 
@@ -305,7 +301,7 @@ class Network:
 					ksize=[1, k, k, 1],
 					strides=[1, k, k, 1], padding='VALID', name=neuron_name)
 				new_neurons[layer_no] = new_neuron
-				print 'new_neuron', new_neuron
+				print ('new_neuron', new_neuron)
 
 		neurons = new_neurons
 
@@ -411,13 +407,13 @@ class Network:
 						tf.reduce_sum(tf.exp(y_b-tf.reduce_max(y_b))), name=neuron_name)
 
 				parameters_to_regularize.append(tf.reshape(fc_parameter['weights'], [tf.size(fc_parameter['weights'])]))
-		                parameters_to_regularize.append(tf.reshape(fc_parameter['biases'], [tf.size(fc_parameter['biases'])]))
+				parameters_to_regularize.append(tf.reshape(fc_parameter['biases'], [tf.size(fc_parameter['biases'])]))
 
 				parameters[layer_no-1] = fc_parameter
-				print 'fc_parameter', parameters[layer_no-1]
+				print ('fc_parameter', parameters[layer_no-1])
 
 				neurons[layer_no] = new_neuron
-				print 'new_neuron', new_neuron
+				print ('new_neuron', new_neuron)
 
 		# input
 		x = neurons[0]
@@ -485,9 +481,9 @@ class Network:
 
 	def buildNetwork(self, sess):
 		layer_type = copy.deepcopy(self.layer_type)
-		layer_type = filter(lambda type: type != 'max_pool', layer_type)
+		layer_type = list(filter(lambda type: type != 'max_pool', layer_type))
 		layers = self.layers
-		print 'layers', layers
+		print ('layers', layers)
 		parameters = {}
 		neurons = {}
 		parameters_to_regularize = []
@@ -496,7 +492,7 @@ class Network:
 		keep_prob = tf.placeholder(tf.float32, name='keep_prob')
 
 		neurons[0] = tf.placeholder(tf.float32, [None]+layers[0], name=neuron_base_name+'0')
-		print neurons[0]
+		print (neurons[0])
 
 		for layer_no in range(1, len(layers)):
 			weight_name = weight_base_name + str(layer_no-1)
@@ -517,7 +513,7 @@ class Network:
 				#parameters_to_regularize.append(tf.reshape(conv_parameter['biases'], [tf.size(conv_parameter['biases'])]))
 
 				parameters[layer_no-1] = conv_parameter
-				print 'conv_parameter', parameters[layer_no-1]
+				print ('conv_parameter', parameters[layer_no-1])
 				rank = sess.run(tf.rank(neurons[layer_no-1]))
 
 				for _ in range(4 - rank):
@@ -537,7 +533,7 @@ class Network:
 					ksize=[1, k, k, 1],
 					strides=[1, k, k, 1], padding='VALID', name=neuron_name)
 				neurons[layer_no] = new_neuron
-				print 'new_neuron', new_neuron
+				print ('new_neuron', new_neuron)
 
 			elif layer_type[layer_no] == "hidden" or layer_type[layer_no] == "output":
 				fc_parameter = {
@@ -551,10 +547,10 @@ class Network:
 				}
 
 				parameters_to_regularize.append(tf.reshape(fc_parameter['weights'], [tf.size(fc_parameter['weights'])]))
-	                        parameters_to_regularize.append(tf.reshape(fc_parameter['biases'], [tf.size(fc_parameter['biases'])]))
+				parameters_to_regularize.append(tf.reshape(fc_parameter['biases'], [tf.size(fc_parameter['biases'])]))
 
 				parameters[layer_no-1] = fc_parameter
-				print 'fc_parameter', parameters[layer_no-1]
+				print ('fc_parameter', parameters[layer_no-1])
 
 				# fully-connected
 				flattened = tf.reshape(neurons[layer_no-1],
@@ -572,7 +568,7 @@ class Network:
 						tf.reduce_sum(tf.exp(y_b-tf.reduce_max(y_b))), name=neuron_name)
 
 				neurons[layer_no] = new_neuron
-				print 'new_neuron', new_neuron
+				print ('new_neuron', new_neuron)
 
 		# input
 		x = neurons[0]
@@ -652,10 +648,10 @@ class Network:
 				y_: labels, keep_prob_input: 1.0, keep_prob: 1.0})
 
 		time2 = time.time()
-	        print 'took %0.3f ms' % ((time2-time1)*1000.0)
+		print ('took %0.3f ms' % ((time2-time1)*1000.0))
 
 	def train(self, train_set, validation_set, batch_size, train_iteration):
-		print "train"
+		print ("train")
 		graph = tf.Graph()
 		with graph.as_default():
 			with tf.Session(graph=graph, config=tf.ConfigProto(gpu_options=self.gpu_options)) as sess:
@@ -689,7 +685,7 @@ class Network:
 		return infer_result
 
 	def infer(self, data_set, label=None):
-		print "infer"
+		print ("infer")
 
 		graph = tf.Graph()
 		with graph.as_default():
@@ -813,7 +809,7 @@ class Network:
 				# float
 				f = open(weight_filename, 'w')
 				weight_len = len(weight_vector)
-				print 'weight_len', weight_len
+				print ('weight_len', weight_len)
 				f.write(struct.pack('i', weight_len))
 
 				for i in range(len(weight_vector)):
@@ -822,7 +818,7 @@ class Network:
 
 				f = open(bias_filename, 'w')
 				bias_len = len(bias_vector)
-				print 'bias_len', bias_len
+				print ('bias_len', bias_len)
 				f.write(struct.pack('i', bias_len))
 
 				for i in range(len(bias_vector)):
@@ -832,7 +828,7 @@ class Network:
 				# q
 				f = open(weight_filename + '_q', 'w')
 				weight_len = len(weight_vector)
-				print 'weight_len', weight_len
+				print ('weight_len', weight_len)
 				f.write(struct.pack('i', weight_len))
 
 				for i in range(len(weight_vector)):
@@ -848,7 +844,7 @@ class Network:
 
 				f = open(bias_filename + '_q', 'w')
 				bias_len = len(bias_vector)
-				print 'bias_len', bias_len
+				print ('bias_len', bias_len)
 				f.write(struct.pack('i', bias_len))
 
 				for i in range(len(bias_vector)):
@@ -865,11 +861,11 @@ class Network:
 def main(args):
 	nz = None
 	if os.path.exists(NeuroZERO_filename):
-		print '[] Load NeuroZERO'
-		nz_file = open(NeuroZERO_filename, 'r') 
+		print ('[] Load NeuroZERO')
+		nz_file = open(NeuroZERO_filename, 'rb')
 		nz = pickle.load(nz_file)
 	else:
-		print '[] Create a new NeuroZERO'
+		print ('[] Create a new NeuroZERO')
 		nz = NeuroZERO()
 
 	data = None
@@ -877,50 +873,50 @@ def main(args):
 		data = __import__(args.data)
 
 	if args.mode == 'base':
-		print '[base] constructing a baseline network'
+		print ('[base] constructing a baseline network')
 
 		if args.layers == None or args.layers == '':
-			print '[base] No layer. Use --layers'
+			print ('[base] No layer. Use --layers')
 			return
 
-		print '[base] layers:', args.layers
+		print ('[base] layers:', args.layers)
 		nz.constructNetwork(nz.parse_layers(args.layers), baseline_network_name)
 
 	elif args.mode == 't':
-		print '[t] train'
+		print ('[t] train')
 		if args.network is None:
-			print '[t] No network. Use --network'
+			print ('[t] No network. Use --network')
 			return
 
 		if data == None:
-			print '[t] No data. Use --data'
+			print ('[t] No data. Use --data')
 			return
 
-		print '[t] network:', args.network
-		print '[t] data:', args.data, 'train/test.size:', data.train_set()[0].shape, data.test_set()[0].shape
+		print ('[t] network:', args.network)
+		print ('[t] data:', args.data, 'train/test.size:', data.train_set()[0].shape, data.test_set()[0].shape)
 
 		batch_size = 100
 		train_iteration = 5000
 		nz.network_dic[args.network][1].train(data.train_set(), data.test_set(), batch_size, train_iteration)
 
 	elif args.mode == 'i':
-		print '[i] inference'
+		print ('[i] inference')
 		if args.network is None:
-			print '[i] No network Use --network'
+			print ('[i] No network Use --network')
 			return
 
 		if data == None:
-			print '[i] No data. Use --data'
+			print ('[i] No data. Use --data')
 			return
 
 		nz.network_dic[args.network][1].infer(data.test_set()[0], data.test_set()[1])
 		return
 
 	elif args.mode == 'ext':
-		print '[ext] constructing a extended network'
+		print ('[ext] constructing a extended network')
 
 		if nz.network_no < 2:
-			print '[ext] No baseline network. Use --mode=c to create the baseline network first'
+			print ('[ext] No baseline network. Use --mode=c to create the baseline network first')
 
 		base_network = nz.network_dic[baseline_network_name][1]
 		extended_network = nz.create_extended_network(base_network.layers)
@@ -928,9 +924,9 @@ def main(args):
 		nz.constructNetworkExtended(extended_network[step-1], base_network, extended_network_name)
 
 	elif 'e' in args.mode:
-		print '[e] export weights and biases of a network to a file'
+		print ('[e] export weights and biases of a network to a file')
 		if args.network is None:
-			print '[e] No network. Use --network'
+			print ('[e] No network. Use --network')
 			return
 
 		network = nz.network_dic[args.network][1]
@@ -938,8 +934,8 @@ def main(args):
 		network.exportParameterFromNetwork(weight_base_name+args.network, bias_base_name+args.network)
 
 	if args.save != False:
-		print '[] Save NeuroZERO'
-		nz_file = open(NeuroZERO_filename, 'w') 
+		print ('[] Save NeuroZERO')
+		nz_file = open(NeuroZERO_filename, 'wb')
 		pickle.dump(nz, nz_file)
 
 def parse_arguments(argv):
