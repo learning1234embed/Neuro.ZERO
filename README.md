@@ -9,11 +9,11 @@ It implements Neuro.ZERO's two modes of acceleration, i.e., 1) *extended inferen
 ## Software Install and Setup 
 Neuro.ZERO requires Python, TensorFlow (for training) and Code Composer Studio (for MSP430FRXXXX binary generation). The path environment also needs to be set for the execution of eclipse (CCS).
 
-**Step 1.** Install [Python](https://www.python.org/downloads/).
+**Step 1.** Install [Python (>= 2.7)](https://www.python.org/downloads/).
 
-**Step 2.** Install [Tensorflow](https://www.tensorflow.org/).
+**Step 2.** Install [Tensorflow (>= 1.13)](https://www.tensorflow.org/).
 
-**Step 3.** Install [Code Composer Studio (CCS)](http://www.ti.com/tool/CCSTUDIO) and set PATH for eclipse execution.
+**Step 3.** Install [Code Composer Studio (CCS) (>= v8)](http://www.ti.com/tool/CCSTUDIO) and set PATH for eclipse execution.
 ```sh
 export PATH=$PATH:/home/ti/ccsv8/eclipse/
 ```
