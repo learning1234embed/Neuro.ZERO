@@ -108,15 +108,11 @@ adaptIQ adaptIQaddSame(adaptIQ x, adaptIQ y)
     z.base = x.base + y.base;
     z.iq = x.iq;
     status_reg = __get_SR_register();
-    //printf("sr = 0x%x\n", status_reg);
-    //printf("carry = 0x%x\n", status_reg & 0x01);
 
     if ((status_reg & 0x104) == 0x104) {
-        //printf("in 1 \n");
         z.base = (z.base >> 1) & ~(0x80000000);
         z.iq = z.iq - 1;
     } else if ((status_reg & 0x101) == 0x101) {
-        //printf("in 2 \n");
         z.base = (z.base >> 1) | 0x80000000;
         z.iq = z.iq - 1;
     }
@@ -151,8 +147,6 @@ adaptIQ adaptIQadd(adaptIQ x, adaptIQ y)
     adaptIQ x_aligned = x, y_aligned = y;
     adaptIQ z;
 
-    //printf("x.iq = %d y.iq = %d\n", x.iq, y.iq);
-
     // align IQ
     uint8_t large_iq = x.iq > y.iq ? x.iq : y.iq;
     uint8_t small_iq = x.iq < y.iq ? x.iq : y.iq;
@@ -172,17 +166,8 @@ adaptIQ adaptIQadd(adaptIQ x, adaptIQ y)
     uint8_t original_iq = z.iq;
     uint8_t updated_iq = update_adaptIQadd(z);
 
-
-    //printf("x_aligned.iq = %d y_aligned.iq = %d\n", x_aligned.iq, y_aligned.iq);
-    //printf("z.iq = %d updated_z.iq = %d\n", z.iq, updated_iq);
-
-    //uint8_t original_iq = x.iq > y.iq ? x.iq : y.iq;
-    //uint8_t updated_iq = update_adaptIQmpy(x, y);
-
     z.iq = updated_iq;
     z.base = z.base << (updated_iq - original_iq);
-
-    //printf("z = %.9f\n", adaptIQtoF(z));
 
     return z;
 }
