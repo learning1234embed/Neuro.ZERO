@@ -1,8 +1,10 @@
+from __future__ import print_function
 import os
 import struct
 import sys
 import argparse
 import shutil
+import errno
 import NeuroZERO
 
 param_filename = "_param.h"
