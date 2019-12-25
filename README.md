@@ -303,8 +303,8 @@ back_propagate[0] skipout = 0.534562230
 back_propagate[1] skipout = 0.089632861
 ```
 
-## Citation
-**"[Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems](https://dl.acm.org/citation.cfm?id=3360030)"**
+## Citation (BibTeX)
+**[Neuro.ZERO: A Zero-Energy Neural Network Accelerator for Embedded Sensing and Inference Systems](https://dl.acm.org/citation.cfm?id=3360030)**
 ```
 @inproceedings{lee2019neuro,
   title={Neuro. ZERO: a zero-energy neural network accelerator for embedded sensing and inference systems},
