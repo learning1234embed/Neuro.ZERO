@@ -304,7 +304,7 @@ back_propagate[1] skipout = 0.089632861
 ```
 
 ## Citation
-
+```
 @inproceedings{lee2019neuro,
   title={Neuro. ZERO: a zero-energy neural network accelerator for embedded sensing and inference systems},
   author={Lee, Seulki and Nirjon, Shahriar},
@@ -313,3 +313,4 @@ back_propagate[1] skipout = 0.089632861
   year={2019},
   organization={ACM}
 }
+```
